@@ -1,0 +1,223 @@
+<html>
+<head>
+<title>Examination Seating Plan</title>
+<link href="style/jquery.ui.all.css" rel="stylesheet">
+<link href="style/smart_wizard.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="style/print.css" type="text/css" media="print"/>
+<script type="text/javascript" src="script/jquery.js"></script>
+<script type="text/javascript" src="script/tab.js"></script>
+<script type="text/javascript" src="script/javaScript.js"></script>
+<script type="text/javascript" src="script/jquery.smartWizard-2.0.min.js"></script>
+<script type="text/javascript" src="script/jquery.ui.core.js"></script>
+<script type="text/javascript" src="script/jquery.ui.datepicker.js"></script>
+<script type="text/javascript" src="script/jquery.ui.widget.js"></script>
+<script type="text/javascript" src="script/jquery.ui.button.js"></script>
+<script type="text/javascript" src="script/jquery.ui.mouse.js"></script>
+<script type="text/javascript" src="script/jquery.ui.tabs.js"></script>
+<script type="text/javascript" src="script/jquery.ui.accordion.js"></script>
+<script type="text/javascript">
+window.onload=loadBranches();
+$(document).ready(function(){
+    	// Smart Wizard 	
+  	$('#wizard').smartWizard();
+   function onFinishCallback()
+   {
+	   $('#wizard').smartWizard('showMessage','Finish Clicked');
+   }  
+   $("#opt2").hide();   
+});
+function printType(val) 
+{
+	$("#opt1").hide();
+	$("#opt2").hide();
+	$("#"+val).show();	
+
+}
+</script>
+</head>
+<body>
+<div class="tabitem">
+<table>
+<tr><td id="tab1" class="tab">New Seating Plans</td><td id="tab2" class="tab" onclick="getExamsList('viewexamslist')">View Seating Plans</td><td id="tab3" class="tab" onclick="getExamsList('examsList')">Attendance Sheets</td><td id="tab4" class="tab" onclick="examsList('content4')">Back Up</td><td id="tab5" class="tab" onclick="restoreList('content5')">Restore</td></tr>
+</table>
+</div>
+<div id="content1" class="container">
+  		<div id="wizard" class="swMain">
+  			<ul>
+  				<li><a href="#step-1">
+                <span class="stepNumber">1</span>
+                <span class="stepDesc">
+                   Step 1<br />
+                  <small>Exam Details</small>
+                </span>
+            </a></li>
+  				<li><a href="#step-2">
+                <span class="stepNumber">2</span>
+                <span class="stepDesc">
+                   Step 2<br />
+                   <small>Branches Selection</small>
+                </span>
+            </a></li>
+  				<li><a href="#step-3">
+                <span class="stepNumber">3</span>
+                <span class="stepDesc">
+                   Step 3<br />
+                   <small>Branch Details</small>
+                </span>                   
+             </a></li>
+             <li><a href="#step-4">
+                <span class="stepNumber">4</span>
+                <span class="stepDesc">
+                   Step 4<br />
+                   <small>Rooms Selection</small>
+                </span>                   
+             </a></li>
+  				<li><a href="#step-5">
+                <span class="stepNumber">5</span>
+                <span class="stepDesc">
+                   Step 5<br />
+                   <small>Seating Plan</small>
+                </span>                   
+            </a></li>
+            <li><a href="#step-6">
+                <span class="stepNumber">6</span>
+                <span class="stepDesc">
+                   Step 6<br />
+                   <small>Set Room Priority</small>
+                </span>                   
+             </a></li>
+  			</ul>
+  			<div id="step-1">	
+            <h2 class="StepTitle">Exam Details</h2>  
+            <form  style="position:relative;top:20px;left:12%;height:300px" id="newplan1" name="newplan1">
+            <table>
+            <tr><td>Examination Type<sup>*</sup></td><td><input type="radio" value="REG" id="extype1" name="extype" checked="checked" /><label for="extype1">Regular</label>&nbsp;&nbsp;<input type="radio" value="SUP" id="extype2" name="extype" /><label for="extype2">Supplementary</label></td></tr>
+            <tr><td>Name of the Examination<sup>*</sup></td><td><input type="text" id="exname" name="exname" maxlength="40" onfocus="mandatory('extype')" class="textbox" /></td></tr>
+            <tr><td>Timings<sup>*</sup></td><td><input type="text" id="starttime0" placeholder="HH:MM" maxlength="5" onfocus="mandatory('exname')" onkeypress="return timer(this,event)" style="width:70px" name="starttime0" class="textbox" onblur="checkTime(0)" />&nbsp;To&nbsp;<input type="text"  id="endtime0" name="endtime0" placeholder="HH:MM" onfocus="mandatory('starttime0')" onkeypress="return timer(this,event)" maxlength="5"  style="width:70px" class="textbox" /></td></tr>
+            <tr><td>Month<sup>*</sup></td><td>
+            <select id="month" name="month" maxlength="40" onfocus="mandatory('endtime0')" onblur="getAvailStatus()" class="textbox">
+					<option value="">::: Month :::</option> 
+					<option>JANUARY</option>           
+					<option>FEBRUARY</option>           
+					<option>MARCH</option>           
+					<option>APRIL</option>           
+					<option>MAY</option>           
+					<option>JUNE</option>           
+					<option>JULY</option>           
+					<option>AUGUST</option>           
+					<option>SEPTEMBER</option>           
+					<option>OCTOBER</option>           
+					<option>NOVEMBER</option>           
+					<option>DECEMBER</option>           
+            </select></td></tr>
+            <tr><td>Academic Year<sup>*</sup></td><td>
+            	<select id="ac_yr" name="ac_yr" class="textbox" onfocus="mandatory('month')" onblur="getAvailStatus()">
+	            <option value="">:: Academic Year ::</option>
+   				<option value="2012-13">2012-13</option>         
+   				<option value="2013-14">2013-14</option>         
+   				<option value="2014-15">2014-15</option>         
+   				<option value="2015-16">2015-16</option>         
+   				<option value="2016-17">2016-17</option>         
+   				<option value="2017-18">2017-18</option>         
+   				<option value="2018-19">2018-19</option>         
+   				<option value="2019-20">2019-20</option>         
+   				<option value="2020-21">2020-21</option>         
+   				<option value="2021-22">2021-22</option>         
+   				<option value="2022-23">2022-23</option>         
+   				<option value="2023-24">2023-24</option>         
+   				<option value="2024-25">2024-25</option>         
+   				<option value="2025-26">2025-26</option>         
+   				<option value="2026-27">2026-27</option>         
+   				<option value="2027-28">2027-28</option>         
+   				<option value="2028-29">2028-29</option>         
+   				<option value="2029-30">2029-30</option>         
+   				<option value="2030-31">2030-31</option>         
+   				<option value="2031-32">2031-32</option>         
+   				<option value="2032-33">2032-33</option>         
+   				<option value="2033-34">2033-34</option>         
+            </select></td></tr>                    
+             <tr><td>Number of Subjects<sup>*</sup></td><td>
+             <input type="number" id="excnt" name="excnt" max="30" min="1" placeholder="Number of Subjects" class="textbox" onchange="addEle(this.value)" onfocus="mandatory('ac_yr')" />
+             </td></tr>
+             <tr><td colspan="2" id="exavail"></td></tr>
+             </table> 
+             <div class="title" id="title">Select Examination Dates</div><div style="position:absolute;top:12%;right:12%;z-index:3000;overflow-y:auto;width:350px;height:250px;visibility:hidden;" id="tbc"><br/></div>
+            </form>        			
+        </div>
+  			<div id="step-2">	   
+  				<h2 class="StepTitle">Select Branches</h2>	 
+  				<center><strong id="prompt0" class="promptmsg">Please Enter Examination Details</strong></center>   
+            <div id="branches"></div>  
+			</div>               
+  			<div id="step-3">
+            <h2 class="StepTitle">Branches and Details</h2>
+            <div style="overflow:auto;width:100%;height:90%;">
+            <center>
+            <strong id="prompt1" class="promptmsg">Please Select Branches </strong>
+            <table id="branchDetails">
+				</table>
+				</center>
+				</div>                        				        
+        </div>
+  			<div id="step-4">
+            <h2 class="StepTitle">Select Rooms</h2>
+            <center><strong id="prompt2" class="promptmsg">Please Provide Roll Numbers</strong></center>  
+            <div id="step4" style="visibility:hidden">	
+            <div id="accordion-resizer" class="ui-widget-content">
+					<div id="accordion">
+					</div>
+				</div>  
+				<div class="statusmessage">
+					<table class="report">
+						<tr><td>Total Number of Students</td><td><input type="text" disabled="disabled" id="nofstudents" value="0" /></td></tr>
+						<tr><td>Number of Rooms Selected</td><td><input type="text" disabled="disabled" id="roomselected" value="0" /></td></tr>
+						<tr><td>Capacity of Selected Rooms</td><td><input disabled="disabled" id="roomscapacity" value="0" /></td></tr>
+						<tr><td id="statuscontent">Rooms Needed for Remaining Students</td><td><input disabled="disabled" value="0" id="remainingstudents"></td></tr>
+					</table>
+				</div>
+				</div>              			
+        </div> 
+        <div id="step-5">
+            <h2 class="StepTitle">Select Rooms</h2>	
+            <center><strong id="prompt3" class="promptmsg">You must select enough number of Rooms</strong></center>  
+            <div class="title" id="rtitle" style="position:ablsoute;top:38%;right:10%;visibility:visible;">Remaining Members</div>
+				<div id="tabs" style="height:90%;">				
+				</div>          			
+        </div>
+        <div id="step-6" >
+            <h2 class="StepTitle">Branch Priority in Rooms</h2>	
+            <div style="overflow:auto;width:100%;height:90%;" id="step6">
+            <center>
+            <strong id="prompt4" class="promptmsg">Please Complete Rooms allotment and set Priority</strong>
+            <table id="priority">
+				</table>
+				<table id="priority2">
+				</table>
+				</center>
+				</div>            			
+        </div>  		
+  		</div>
+  		<img src="pic/load.gif" class="load" id="load" alt="Wait..."/>
+ </div>		
+<div id="content2" class="container">
+<table class="plantable">
+	<tr><td><input type="radio" name="roomwise" checked="checked" id="roomwise" onclick="printType('opt1')" /><label for="roomwise" style="font-size:15px">Room wise Seating Plans</label></td><td><input type="radio" name="roomwise"  id="branchwise" onclick="printType('opt2')" /><label for="branchwise"  style="font-size:15px">Branch wise Seating Plans</label></td><td><button onclick="printDiv('plan1')" style="font-weight:bold;width:100px;height:30px;">&nbsp;Print&nbsp;</button></td></tr>
+	<tr>
+		<td>Select Examination    	: <select onchange="getExamBranches(this.value,'view')" id="viewexamslist" class="textbox"><option selected="selected" value="">:: Select Exam ::</option></select></td>	
+		<td id="opt1">Select Room  : <select onchange="roomSeatingPlan(this.value,'plan1')" id="viewroomwise" class="textbox"><option selected="selected" value="">:: Select Room ::</option></select></td>		
+		<td id="opt2">Select Branch : <select onchange="branchSeatingPlan(this.value,'plan1')" id="viewbranchwise" class="textbox"><option selected="selected" value="">:: Select Branch ::</option></select></td>	
+	</tr>
+</table> 
+<div id="plan1" style="position:absolute;top:21%;left:2%;width:98%;height:410px;overflow:auto;"></div>
+</div>
+<div id="content3" class="container">
+<label style="position:absolute;top:10%;left:5%;">Select Examination :<select id="examsList" onchange="getExamRooms(this.value,'total','attendanceSheet')" class="textbox"><option selected="selected" value="">:: Select Examination ::</option></select></label><button onclick="printDiv('plan2')" style="font-weight:bold;width:100px;height:30px;position:absolute;top:10%;right:5%;">&nbsp;Print&nbsp;</button>
+<label style="position:absolute;top:10%;left:45%;">Select Room :<select id="attendanceSheet" onchange="getattendanceSheet('plan2')" class="textbox"><option selected="selected" value="">:: Select Room ::</option></select></label>
+<div id="plan2" style="position:absolute;top:21%;left:2%;width:98%;height:410px;overflow:auto;"></div>
+</div>
+<div id="content4" class="container">
+</div>
+<div id="content5" class="container">
+</div>
+</body>
+</html>

@@ -1,0 +1,3 @@
+<%
+response.sendRedirect("Esmart/Login.jsp");
+%>

@@ -1,0 +1,16 @@
+.tabitem,.plantable,.btn,button,#infobar,.error{display:none;}
+.requests{height:250px;overflow:visible;}
+.requests thead td{font-size:18px;font-weight: bold;border:2px black solid;border-radius:none;color:black;}
+.requests td{font-size:16px;font-weight: bold;border:1px black solid;border-radius:none;color:black;}
+.requests td .textbox{width:80px;text-align:center;border:none;}
+.requests td input{border:none;}
+#section1 .requests td:last-child{width:200px;}
+.details{margin:0 30%;border:1px black solid;}
+.details td{font-size:14px;color:black;font-weight:bold;}
+.room .cols td{color:black;font-size:18px;font-weight:bold;width:150px;}
+.room{border:1px black solid;}
+.page{height: 1500px;position: absolute;}
+.page .requests	{ page-break-inside:auto;page-break-after:alway;height:1630px;}
+.page .requests tr{ page-break-inside:avoid; page-break-after:auto }
+.page .requests thead { display:table-header-group }
+

@@ -1,0 +1,43 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="style/css.css" />
+<link rel="stylesheet" type="text/css" href="style/print.css" media="print"/>
+<script type="text/javascript" src="script/jquery.js"></script>
+<script type="text/javascript" src="script/tab.js"></script>
+<script type="text/javascript" src="script/javaScript.js"></script>
+<script type="text/javascript" >
+	window.onload=getExamsList('exlist');
+</script>
+</head>
+<body>
+<div class="tabitem">
+<table>
+<tr><td id="tab1" class="tab">Request for Invigilators</td><td id="tab2" onclick="getExamsList('exlist2')" class="tab">Request Status</td><td id="tab3" class="tab" onclick="getExamsList('exlist3')">Allot Invigilators</td><td id="tab4" class="tab" onclick="getExamsList('exlist4')">Invigilation Payments</td></tr>
+</table>
+</div>
+<div id="content1" class="container">
+   <label style="position:absolute;top:10%;left:5%;">Select Examination :<select id="exlist" class="textbox" onchange="getExamDetails(this.value)"><option selected="selected" value="">:: Select Examination ::</option></select></label>
+   <b id="invigreq" style="font-size:20px;position:absolute;top:22%;left:5%;color:navy;font-weight:normal;"></b>
+   <div id="data" class="data" style="position:absolute;left:50%;top:8%;"></div>
+   <div id="allotform" style="position:relative;top:23%;height:380px;" ></div>
+</div>
+<div id="content2" class="container">
+<label style="position:absolute;top:10%;left:5%;">Select Examination :<select id="exlist2" onchange="getRequestStatus(this.value)" class="textbox"><option selected="selected" value="">:: Select Examination ::</option></select></label>
+<div id="reqstatus" style="position:relative;top:10%;height:450px;overflow:auto;width:900px;"></div>
+</div>
+<div id="content3" class="container">
+<label style="position:absolute;top:10%;left:5%;">Select Examination :<select id="exlist3" onchange="getExamDates(this.value,'exdates')" class="textbox"><option selected="selected" value="">:: Select Examination ::</option></select></label>
+<label style="position:absolute;top:10%;left:45%;">Select Dates :<select id="exdates" onchange="getInvigilators()" class="textbox"><option selected="selected" value="">:: Select Date ::</option></select></label>
+<div id="invig_allot_form" style="position:absolute;top:16%;left:1%;width:1000px;height:420px;"></div>
+</div>
+<div id="content4" class="container">
+<label style="position:absolute;top:10%;left:5%;">Select Examination :<select id="exlist4" class="textbox"><option selected="selected" value="">:: Select Examination ::</option></select></label>
+<label style="position:absolute;top:10%;left:45%;">AMOUNT PER EACH INVIGILATION(&#8377;)&nbsp;<input type="text" id="invig_amount" onkeypress="return isNum(event)" style="width:80px;text-align:center;" class="textbox" /></label>
+<input type="button" style="position:absolute;top:10%;left:85%;font-weight:bold;width:150px;height:30px;" onclick="getPaymentSheet()" value="Calculate Payments" />
+<button style="position:absolute;top:17%;left:90%;font-weight:bold;width:100px;height:30px;" onclick="printDiv('invig_payment')" >&nbsp;Print&nbsp;</button>
+<div id="invig_payment" style="position:absolute;top:23%;left:4%;width:900px;height:380px;overflow:auto;"></div>
+</div>
+</div>
+<img src="pic/load.gif" class="load" id="load" alt="Wait..."/>
+</body>
+</html>

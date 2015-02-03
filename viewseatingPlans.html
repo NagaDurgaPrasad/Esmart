@@ -1,0 +1,33 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="style/css.css" />
+<link rel="stylesheet" href="style/print.css" type="text/css" media="print"/>
+<script type="text/javascript" src="script/javaScript.js"></script>
+<script type="text/javascript" src="script/jquery.js"></script>
+<script type="text/javascript">
+window.onload=getExamsList('viewexamslist');
+$(document).ready(function(){
+   $("#opt2").hide();   
+});
+function printType(val) 
+{
+	$("#opt1").hide();
+	$("#opt2").hide();
+	$("#"+val).show();	
+
+}
+</script>
+</head>
+<body style="border-left:1px gray solid;height:520px;">
+<table class="plantable">
+	<tr><td><input type="radio" name="roomwise" checked="checked" id="roomwise" onclick="printType('opt1')" /><label for="roomwise" style="font-size:15px">Room wise Seating Plans</label></td><td><input type="radio" name="roomwise"  id="branchwise" onclick="printType('opt2')" /><label for="branchwise"  style="font-size:15px">Branch wise Seating Plans</label></td><td><button onclick="printDiv('plan1')" style="font-weight:bold;width:100px;height:30px;">&nbsp;Print&nbsp;</button></td></tr>
+	<tr>
+		<td>Select Examination    	: <select onchange="getExamBranches(this.value,'view')" id="viewexamslist" class="textbox"><option selected="selected" value="">:: Select Exam ::</option></select></td>	
+		<td id="opt1">Select Room  : <select onchange="roomSeatingPlan(this.value,'plan1')" id="viewroomwise" class="textbox"><option selected="selected" value="">:: Select Room ::</option></select></td>		
+		<td id="opt2">Select Branch : <select onchange="branchSeatingPlan(this.value,'plan1')" id="viewbranchwise" class="textbox"><option selected="selected" value="">:: Select Branch ::</option></select></td>	
+	</tr>
+</table> 
+<div id="plan1" style="position:absolute;top:15%;left:2%;width:98%;height:440px;overflow:auto;"></div>
+</div>
+</body>
+</html>

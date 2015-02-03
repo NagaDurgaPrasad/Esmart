@@ -1,0 +1,45 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="style/css.css" />
+<script type="text/javascript" src="script/jquery.js"></script>
+<script type="text/javascript" src="script/tab.js"></script>
+<script type="text/javascript" src="script/javaScript.js"></script>
+</head>
+<body onload="getBlocksList('block')">
+<div class="tabitem">
+<table>
+	<tr>
+		<td id="tab1" class="tab">New Rooms</td>
+		<td id="tab2" class="tab" onclick="getBlocksList('block2')">Available Rooms</td>
+	</tr>
+</table>
+</div>
+<div id="content1" class="container">
+	<form method="post" style="margin:5%;margin-left:20%;" id="rooms1" name="rooms1">
+	<fieldset class="addbox"><legend>NEW ROOM</legend>
+		<table>
+			<tr><td>Room Number</td><td><input type="text" class="textbox" name="room_no" id="room_no" required="" onkeypress="return isNum(event)" onblur="isEmpty(this,'err1')" /></td><td id="err1" class="error"></td></tr>
+			<tr><td>Rows</td><td><input type="text" class="textbox" name="rows" id="rows" onkeypress="return isNum(event)" onblur="setCapacity(this,rooms1.columns)" /></td><td id="err2" class="error"></td></tr>
+			<tr><td>Columns</td><td><input type="text" class="textbox" name="columns" id="columns"  onkeypress="return isNum(event)" onblur="setCapacity(rooms1.rows,this)" /></td><td id="err3" class="error"></td></tr>
+			<tr><td>Max.Capacity</td><td><input type="text" class="textbox" name="capacity" id="capacity" disabled="true" /></td></tr>
+			<tr><td>Block Name</td><td><select  class="textbox" name="block" id="block" onblur="isEmpty(this,'err5')" onchange="getSelectedBranches(this.value,'branch')" /></select></td><td id="err5" class="error"></td></tr>
+			<tr><td>Branch Name</td><td><select  class="textbox" name="branch" id="branch" onblur="isEmpty(this,'err6')" /></select></td><td id="err6" class="error"></td></tr>
+			<tr><td align="right"><input type="button" value="Submit" class="btn" onclick="addRoom('new')"  /></td><td><input type="reset" value="Clear" class="btn" /></td><td></td></tr>
+		</table>	
+	</fieldset>	
+	</form>
+</div>
+<div id="content2" class="container">
+	<table >
+		<tr><td>Block Name</td><td><select  class="textbox" name="block2" onchange="getRooms(this.value)" id="block2" style="width:300px;"  /></select></td></tr>
+	</table>	
+	<div>
+		<div id="show2" class="show" style="height:91%"></div>
+		<div id="descshow2" class="desc" style="height:91%"></div>
+	</div>	
+</div>
+
+<div id="mask"></div>
+<div id="msgbox" class="msgbox"></div>
+</body>
+</html>

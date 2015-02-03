@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="style/print.css" type="text/css" media="print"/>
+<link rel="stylesheet" type="text/css" href="style/css.css" />
+<script type="text/javascript" src="script/javaScript.js"></script>
+<meta charset="utf-8" />
+<title></title>
+</head>
+<body onload="getExamsList('examsList')" style="border-left:1px gray solid;">
+<label style="position:absolute;top:10%;left:5%;">Select Examination :<select id="examsList" onchange="getExamRooms(this.value,'total','attendanceSheet')" class="textbox"><option selected="selected" value="">:: Select Examination ::</option></select></label><button onclick="printDiv('plan2')" style="font-weight:bold;width:100px;height:30px;position:absolute;top:10%;right:5%;">&nbsp;Print&nbsp;</button>
+<label style="position:absolute;top:10%;left:45%;">Select Room :<select id="attendanceSheet" onchange="getattendanceSheet('plan2')" class="textbox"><option selected="selected" value="">:: Select Room ::</option></select></label>
+<div id="plan2" style="position:absolute;top:21%;left:2%;width:98%;height:410px;overflow:auto;"></div>
+</body>
+</html>

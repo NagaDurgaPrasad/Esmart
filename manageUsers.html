@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="style/css.css" />
+<script type="text/javascript" src="script/jquery.js"></script>
+<script type="text/javascript" src="script/tab.js"></script>
+<script type="text/javascript" >
+var xmlhttp;
+var gender;
+function gend() 
+{
+	if(document.getElementById("rad1").checked)
+	gender=document.getElementById("rad1").value;
+	else	
+	gender=document.getElementById("rad2").value;	
+}
+window.onload=function () 
+{
+		if (window.XMLHttpRequest)
+		{
+ 	 		xmlhttp=new XMLHttpRequest();
+		}
+		else
+		{	
+ 			 xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		xmlhttp.onreadystatechange=function()
+  		{
+  			if(xmlhttp.readyState==4 && xmlhttp.status==200)
+   		{
+ 				document.getElementById("dept1").innerHTML +=xmlhttp.responseText;
+ 				document.getElementById("dept2").innerHTML +=xmlhttp.responseText;
+ 				document.getElementById("dept3").innerHTML +=xmlhttp.responseText;
+ 				document.getElementById("dept4").innerHTML +=xmlhttp.responseText;
+    		}
+  		}
+		xmlhttp.open("GET","getDept.jsp",true);
+		xmlhttp.send();
+}
+	function addStaff() 
+	{
+	
+		//document.getElementById("load").style.visibility="visible";
+		xmlhttp.onreadystatechange=function()
+  		{
+  			if(xmlhttp.readyState==4 && xmlhttp.status==200)
+   		{
+   			//document.getElementById("load").style.visibility="hidden"; 
+				document.getElementById("msgbox").innerHTML=xmlhttp.responseText;
+    		}
+  		}
+		xmlhttp.open("POST","addStaff.jsp",true);
+		xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+		xmlhttp.send("staff_id="+f.staff_id.value+"&sname="+f.sname.value+"&dd="+f.dd.value+"&mm="+f.mm.value+"&yyyy="+f.yyyy.value+"&gender="+gender+"&dept_id="+f.dept_id.value+"&role="+f.role.value);
+	}
+function valid() 
+{
+	var d=f.dd.value;	
+	var m=f.mm.value;
+	var yy=f.yyyy.value;  
+if(((m=='APR'||m=='JUN'||m=='SEP'||m=='NOV')&&d>30)||((yy%4)==0&&m=='FEB'&&d>29)||((yy%4)!=0&&m=='FEB'&&d>28))
+	{
+		window.alert("INVALID DATE");
+		f.dd.focus();
+		return false;
+	}
+	else 
+		return true;	
+}
+function getStaff(dept_id,target) 
+{
+	xmlhttp.onreadystatechange=function()
+  	{
+  		if(xmlhttp.readyState==4 && xmlhttp.status==200)
+   	{
+			document.getElementById(target).innerHTML=xmlhttp.responseText;
+    	}
+  	}
+		xmlhttp.open("get","getStaff.jsp?dept_id="+dept_id,true);
+		xmlhttp.send();
+}
+function getStaffDetails(val,target) 
+{
+	xmlhttp.onreadystatechange=function()
+  	{
+  		if(xmlhttp.readyState==4 && xmlhttp.status==200)
+   	{
+			document.getElementById(target).innerHTML=xmlhttp.responseText;
+    	}
+  	}
+		xmlhttp.open("get","getStaffDetails.jsp?staff_id="+val,true);
+		xmlhttp.send();
+}
+</script>
+</head>
+<body>
+<table>
+<tr><td id="tab1" class="tab">Create User</td><td id="tab2" class="tab">Change User Settings </td><td id="tab3" class="tab">View User Details</td><td id="tab4" class="tab">Delete Users</td></tr>
+</table>
+<div id="content1" class="container">
+</div>
+<div id="content2" class="container">
+</div>
+<div id="content3" class="container">
+</div>
+<div id="content4" class="container">
+</div>
+</body>
+</html>

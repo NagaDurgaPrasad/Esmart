@@ -1,0 +1,153 @@
+@import url("css.css");
+
+.TabbedPanels {
+	position:absolute;
+	overflow: hidden;
+	margin: 0px;
+	padding: 0px;
+	clear: none; /* IE Hack to force proper layout when preceded by a paragraph. (hasLayout Bug)*/
+}
+.TabbedPanelsTabGroup {
+	margin: 0px;
+	padding: 0px;
+}
+.TabbedPanelsTab {
+	position: relative;
+	top: 1px;
+	float: left;
+	background-color: #06F;
+	list-style: none;
+	-moz-user-select: none;
+	-khtml-user-select: none;
+	cursor: pointer;
+	overflow: visible;
+	font-size: 16px;
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-weight: bold;
+	font-style: normal;
+	display: block;
+	height: 20px;
+	width: 180px;
+	margin-top: 0px;
+	margin-right: 1px;
+	margin-bottom: 0px;
+	margin-left: 0px;
+	padding-top: 4px;
+	padding-right: 10px;
+	padding-bottom: 4px;
+	padding-left: 10px;
+	text-align:center;
+	border: 1px ridge black;
+	color: #FFFFFF;
+	border-radius:5px;
+}
+
+.TabbedPanelsTabSelected {
+	background-color: #CCC;
+	font-size:18px;
+	color: #000;
+	text-decoration: blink;
+	height:25px;
+	width:180px;
+	border:1px groove black:	
+	border-left-top-radius:10px;
+	border-right-top-radius:10px;
+	font-family: "Times New Roman", Times, serif;
+	border-bottom:none;
+	background-color: #EEE;
+	z-index:500;
+}
+.TabbedPanelsTab a {
+	color: black;
+	text-decoration: none;
+}
+
+.TabbedPanelsContentGroup {
+	clear: both;width:808px;height:400px;
+	border-left: solid 1px #CCC;
+	border-bottom: solid 1px #CCC;
+	border-top: solid 1px #999;
+	border-right: solid 1px #999;
+	background-color: #EEE;
+	border:2px gray ridge;
+	border-radius:10px;
+	border-top:none;
+}
+
+.TabbedPanelsContent {
+	overflow: hidden;
+	padding: 4px;
+	width:810px;
+	height:400px;	
+}
+
+.TabbedPanelsContentVisible {
+	position:absolute;
+	font-size: 14px;
+	height:400px;
+	width:100%;
+	overfolw:none;
+	
+}
+
+.VTabbedPanels {
+	overflow: hidden;
+	zoom: 1;
+}
+
+.VTabbedPanels .TabbedPanelsTabGroup {
+	float: left;
+	width: 10em;
+	height: 20em;
+	background-color: #EEE;
+	position: relative;
+	border-top: solid 1px #999;
+	border-right: solid 1px #999;
+	border-left: solid 1px #CCC;
+	border-bottom: solid 1px #CCC;
+}
+
+.VTabbedPanels .TabbedPanelsTab {
+	float: none;
+	margin: 0px;
+	border-top: none;
+	border-left: none;
+	border-right: none;
+}
+
+.VTabbedPanels .TabbedPanelsTabSelected {
+	background-color: #EEE;
+	border-bottom: solid 1px #999;
+}
+.VTabbedPanels .TabbedPanelsContentGroup {
+	clear: none;
+	float: left;
+	padding: 0px;
+	width: 30em;
+	height: 20em;
+}
+
+
+@media print {
+.TabbedPanels {
+	overflow: visible !important;
+}
+.TabbedPanelsContentGroup {
+	display: block !important;
+	overflow: visible !important;
+	height: auto !important;
+}
+.TabbedPanelsContent {
+	overflow: visible !important;
+	display: block !important;
+	clear:both !important;
+}
+.TabbedPanelsTab {
+	 overflow: visible !important;
+	 display: block !important;
+	 clear:both !important;
+}
+}
+#TabbedPanels1 {
+	color: #330066;
+}

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>Forgot Password</title> 
+<link type="text/css" href="style/LoginStyleSheet.css" rel="stylesheet" />
+<script type="text/javascript">
+var xmlhttp;
+function getQues() 
+{
+if(forgotPwd.uid.value!="")
+{
+	if (window.XMLHttpRequest)
+ 		xmlhttp=new XMLHttpRequest();
+	else
+ 		 xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	xmlhttp.onreadystatechange=function()
+  	{
+  		if(xmlhttp.readyState==4 && xmlhttp.status==200)
+ 			document.getElementById("securityQues").innerHTML=xmlhttp.responseText;
+  	}
+	xmlhttp.open("GET","getsecurityQues.jsp?uid="+forgotPwd.uid.value,true);
+	xmlhttp.send();
+}
+}
+function checkAns() 
+{
+if(forgotPwd.uid.value!=""&&forgotPwd.ans.value!="")
+{
+	xmlhttp.onreadystatechange=function()
+  	{
+  		if(xmlhttp.readyState==4 && xmlhttp.status==200)
+ 			document.getElementById("securityQues").innerHTML=xmlhttp.responseText;
+  	}
+	xmlhttp.open("GET","checkAns.jsp?uid="+forgotPwd.uid.value+"&ans="+forgotPwd.ans.value,true);
+	xmlhttp.send();
+}
+}
+function changePassword() 
+{
+	var pwd=forgotPwd.pwd.value;
+	var rpwd=forgotPwd.repwd.value;
+	if(pwd!=""&&rpwd!="")
+	{
+		if(pwd.length<5)
+			document.getElementById("capslockstatus").innerHTML="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Password Length too short";	
+		else if(pwd!=rpwd)
+		{
+			forgotPwd.pwd.value="";
+			forgotPwd.repwd.value="";
+			forgotPwd.pwd.focus();
+			document.getElementById("capslockstatus").innerHTML="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Password Mismatch"	
+		}
+		else 
+		{
+			xmlhttp.onreadystatechange=function()
+  			{
+  				if(xmlhttp.readyState==4 && xmlhttp.status==200)
+ 					document.getElementById("tabcont").innerHTML=xmlhttp.responseText;
+  			}
+			xmlhttp.open("GET","changePassword.jsp?uid="+forgotPwd.uid.value+"&pwd="+forgotPwd.pwd.value,true);
+			xmlhttp.send();
+		}
+	}
+}
+function capsLock(e) 
+{
+   var kc = e.keyCode ? e.keyCode : e.which;
+   var sk = e.shiftKey ? e.shiftKey : ((kc == 16) ? true : false);
+   if (((kc >= 65 && kc <= 90) && !sk) || ((kc >= 97 && kc <= 122) && sk))
+     	document.getElementById("capslockstatus").innerHTML="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Caps Lock is On";
+  	else
+    	document.getElementById("capslockstatus").innerHTML="";
+}
+function sendMail() 
+{
+	if(forgotPwd.uid.value!="")
+	{
+		xmlhttp.onreadystatechange=function()
+  		{
+  			if(xmlhttp.readyState==4 && xmlhttp.status==200)
+ 				document.getElementById("tabcont").innerHTML=xmlhttp.responseText;
+  		}
+		xmlhttp.open("GET","sendMail.jsp?uid="+forgotPwd.uid.value,true);
+		xmlhttp.send();
+	}
+}
+</script>
+</head>
+<body>
+<form method="post" name="forgotPwd" >
+<div id="tabcont" class="tabcont" style="width:800px;left:20%;">
+	<table>
+		<tr><td style="width:300px;">Enter Login ID</td><td><input type="text" name="uid" size="30"  autofocus="autofocus" required="true" /></td></tr>
+	</table>
+	<table id="securityQues">
+		<tr><td>&nbsp;</td></tr>
+		<tr><td><input type="button" value="  Next >>>  " id="btn" onclick="getQues()" ></td><td id="mailpwd"></td></tr>
+	</table>
+</div>
+</form>
+</body>
+</html>

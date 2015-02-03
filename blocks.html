@@ -1,0 +1,40 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="style/css.css" />
+<script type="text/javascript" src="script/jquery.js"></script>
+<script type="text/javascript" src="script/tab.js"></script>
+<script type="text/javascript" src="script/javaScript.js"></script>
+<script type="text/javascript" >
+window.onload=getBranches();
+</script>
+</head>
+<body>
+<div class="tabitem">
+<table>
+	<tr>
+		<td id="tab1" class="tab" onclick="getBranches()">New Blocks</td>
+		<td id="tab2" class="tab" onclick="getBlocks()">Available Blocks</td>
+	</tr>
+</table>
+</div>
+<div id="content1" class="container">
+<form method="post" style="margin:2%;margin-left:12%;" name="block1" id="block1">
+<fieldset class="addbox"><legend>NEW BLOCK</legend>
+		<table style="width:750px">
+			<tr><td>Block ID</td><td><input type="text" class="textbox" name="block_id" id="block_id" disabled="true" /></td><td></td></tr>
+			<tr><td>Block Name</td><td><input type="text" class="textbox" name="block_name" onkeypress="return isChar(event);" id="block_name" required="" onblur="isEmpty(this,'err1')" /></td><td id="err1" class="error"></td></tr>
+			<tr><td>Block Location</td><td><input type="text" class="textbox" name="locatn" id="locatn" required="" onblur="isEmpty(this,'err2')" /></td><td id="err2" class="error"></td></tr>
+			<tr><td colspan="3" id="branch1"></td></tr>
+			<tr><td align="right"><input type="button" value="Submit" onclick="setArgs()" class="btn" id="sub" /></td><td><input type="reset" value="Clear" id="clr" class="btn" /></td><td></td></tr>
+		</table>	
+</fieldset>	
+</form>
+</div>
+<div id="content2" class="container">
+		<div id="show2" class="show"></div>
+		<div id="descshow2" class="desc"></div>
+</div>
+<div id="mask"></div>
+<div id="msgbox" class="msgbox"></div>
+</body>
+</html>

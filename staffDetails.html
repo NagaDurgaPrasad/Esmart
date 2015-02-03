@@ -1,0 +1,47 @@
+<html>
+<head>
+<link href="style/jquery.ui.all.css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="style/css.css" />
+<script type="text/javascript" src="script/jquery.js"></script>
+<script type="text/javascript" src="script/tab.js"></script>
+<script type="text/javascript" src="script/jquery.ui.core.js"></script>
+<script type="text/javascript" src="script/jquery.ui.datepicker.js"></script>
+<script type="text/javascript" src="script/javaScript.js"></script>
+</head>
+<body onload="getDept('dept1')">
+<div class="tabitem">
+<table>
+<tr><td id="tab1" class="tab">Add Staff Members</td><td id="tab2" class="tab" onclick="getDept('dept2')">Available Staff</td></tr>
+</table>
+</div>
+<div id="content1" class="container" >
+<form method="post" action="addStaff.jsp" style="margin:5%;margin-left:17%;" id="staff1" name="staff1">
+<fieldset class="addbox"><legend>NEW STAFF</legend>
+		<table >
+			<tr><td>STAFF ID</td><td><input type="text" maxlength="10" class="textbox" name="staff_id" id="staff_id" onkeypress="return isNum(event)" required="" onblur="isEmpty(this,'err1')"/></td><td class="error" id="err1"></td></tr>
+			<tr><td>NAME</td><td><input type="text" maxlength="25" class="textbox" name="sname" id="sname" required="" onblur="isEmpty(this,'err2')" onkeypress="return isChar(event)" /></td><td class="error" id="err2"></td></tr>
+			<tr><td>DATE OF JOINING</td><td><input type="text" id="datepicker" name="datepicker" class="textbox" onchange="isEmpty(this,'err3')" onblur="isEmpty(this,'err3')" readonly="true" /></td><td class="error" id="err3"></td></tr>
+			<tr><td>GENDER</td><td>MALE<input type="radio" class="rad" name="gen" id="rad1" checked="checked" value="m" onfocus="isEmpty(document.getElementById('datepicker'),'err3')"/>&nbsp;&nbsp;FEMALE<input type="radio" name="gen" class="rad" id="rad2"  value="f"/></td><td class="error" id="err4"></td></tr>
+			<tr><td>DESIGNATION</td><td><select class="textbox" name="role" id="role" required=""  onblur="isEmpty(this,'err5')" onfocus="isEmpty(document.getElementById('datepicker'),'err3')"><option value="" selected="selected">::Select Designation::</option><option>Associate Professor</option><option >Assistant Professor</option><option>Professor</option><option>Professor & HOD</option></select></td><td class="error" id="err5"></td></tr>
+			<tr><td>DEPARTMENT</td><td><select class="textbox" name="dept_id" id="dept1"  onblur="isEmpty(this,'err6')" ><option value="" selected="selected">::Select Department::</option></select></td><td id="err6" class="error"></td></tr>
+			<tr><td>MOBILE NUMBER</td><td><input type="text" maxlength="10" class="textbox" name="mobile" id="mobile" required onkeypress="return isNum(event)" onblur="isEmpty(this,'err7')" /></td><td class="error" id="err7"></td></tr>			
+			<tr><td align="right"><input type="button" value="Submit" class="btn" onclick="setGender();addStaff()" /></td><td><input type="reset" value="Clear" class="btn" /></td></tr>
+			<tr><td colspan="2" id="show1"></td></tr>
+		</table>
+</fieldset>		
+	</form>
+</div>
+<div id="content2" class="container">
+	<table style="width:380px;">
+		<tr><td>Department</td><td><select class="textbox" name="dept_id" id="dept2" onchange="getStaff(this.value,'show2');" style="width:300px;" ></select></td></tr>
+		<tr><td>Department Name :</td><td id="deptname" style="color:maroon;font-weight:bold"></td></tr>
+	</table>
+	<div>
+		<div id="show2" class="show" style="height:84%"></div>
+		<div id="descshow2" class="desc" style="height:84%"></div>
+	</div>			
+</div>
+<div id="mask"></div>
+<div id="msgbox" class="msgbox"></div>
+</body>
+</html>

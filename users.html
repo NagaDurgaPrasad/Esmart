@@ -1,0 +1,32 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="style/css.css" />
+<script type="text/javascript" src="script/jquery.js"></script>
+<script type="text/javascript" src="script/tab.js"></script>
+<script type="text/javascript" src="script/javaScript.js"></script>
+</head>
+<body>
+<div class="tabitem">
+<table>
+<tr><td id="tab1" class="tab">New User</td><td id="tab2" class="tab" onclick="getUsers()">Existing Users</td></tr>
+</table>
+</div>
+<div id="content1" class="container">
+<form method="post" style="margin:5%;margin-left:10%;" id="users1" name="users1">
+	<fieldset class="addbox"><legend>NEW USER</legend>
+		<table>
+			<tr><td>User_ID</td><td><input type="text" class="textbox" name="uid" id="uid" onblur="isEmpty(this,'err1')" /></td><td id="err1" class="error"></td></tr>
+			<tr><td>Password</td><td><input type="password" class="textbox" name="pwd" id="pwd" onblur="isEmpty(this,'err2')" /></td><td id="err2" class="error"></td></tr>
+			<tr><td>User Type</td><td><select id="usertype"  class="textbox" name="usertype" onblur="isEmpty(this,'err3')"><option value="">:: Select Type ::</option><option value="HOD">HOD</option><option value="Guest">Guest</option></select></td><td id="err3" class="error"></td></tr>
+			<tr><td align="right"><input type="button" value="Submit" onclick="addUser()" class="btn" id="sub" /></td><td><input type="reset" value="Clear" class="btn" /></td></tr>
+		</table>		
+	</fieldset>
+</form>
+</div>
+<div id="content2" class="container">
+		<div id="show2" class="show" style="width:99%"></div>
+</div>
+<div id="mask"></div>
+<div id="msgbox" class="msgbox"></div>
+</body>
+</html>
